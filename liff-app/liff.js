@@ -12,6 +12,15 @@ const PSDI_CHARACTERISTIC_UUID  = '26E2B12B-85F0-4F3F-9FDD-91D114270E6E';
 let ledState = false; // true: LED on, false: LED off
 let clickCount = 0;
 
+
+// mode1 settings
+let mode1State = false; // true: mode1 on, false: mode1 off
+// mode2 settings
+let mode2State = false; // true: mode2 on, false: mode2 off
+// mode3 settings
+let mode3State = false; // true: mode3 on, false: mode3 off
+
+
 // -------------- //
 // On window load //
 // -------------- //
@@ -31,6 +40,35 @@ function handlerToggleLed() {
     liffToggleDeviceLedState(ledState);
 }
 
+
+/******* mode1 button action *****************/
+  function handlerToggleMode1(){
+    mode1State = !mode1State;
+
+    uiToggleMode1Button(mode1State);
+    liffToggleDeviceMode1State(mode1State);
+    console.log("mode-1");
+ }
+
+/******* mode2 button action *****************/
+ function handlerToggleMode2(){
+   mode2State = !mode2State;
+
+   uiToggleMode2Button(mode2State);
+   liffToggleDeviceMode2State(mode2State);
+   console.log("mode-2");
+}
+
+/******* mode3 button action *****************/
+function handlerToggleMode3(){
+  mode3State = !mode3State;
+
+  uiToggleMode3Button(mode3State);
+  liffToggleDeviceMode3State(mode3State);
+  console.log("mode-3");
+}
+
+
 // ------------ //
 // UI functions //
 // ------------ //
@@ -45,6 +83,45 @@ function uiToggleLedButton(state) {
       el.classList.remove("led-on");
     }
 }
+
+/*************** mode1 switch ***************/
+function uiToggleMode1Button(state) {
+    const el = document.getElementById("btn-mode1-toggle");
+    el.innerText = state ? "男性の声 OFF" : "男性の声 ON";
+
+    if (state) {
+      el.classList.add("mode1-on");
+    } else {
+      el.classList.remove("mode1-on");
+    }
+}
+/***************************************/
+
+/*************** mode2 switch ***************/
+function uiToggleMode2Button(state) {
+    const el = document.getElementById("btn-mode2-toggle");
+    el.innerText = state ? "女性の声 OFF" : "女性の声 ON";
+
+    if (state) {
+      el.classList.add("mode2-on");
+    } else {
+      el.classList.remove("mode2-on");
+    }
+}
+/***************************************/
+
+/*************** mode3 switch ***************/
+function uiToggleMode3Button(state) {
+    const el = document.getElementById("btn-mode3-toggle");
+    el.innerText = state ? "ロボットの声 OFF" : "ロボットの声 ON";
+
+    if (state) {
+      el.classList.add("mode3-on");
+    } else {
+      el.classList.remove("mode3-on");
+    }
+}
+/***************************************/
 
 function uiCountPressButton() {
     clickCount++;
@@ -265,6 +342,39 @@ function liffToggleDeviceLedState(state) {
     // off: 0x00
     window.ledCharacteristic.writeValue(
         state ? new Uint8Array([0x01]) : new Uint8Array([0x00])
+    ).catch(error => {
+        uiStatusError(makeErrorMsg(error), false);
+    });
+}
+
+/********* mode1 *********/
+function liffToggleDeviceMode1State(state) {
+    // on: 0x03
+    // off: 0x02
+    window.ledCharacteristic.writeValue(
+        state ? new Uint8Array([0x03]) : new Uint8Array([0x02])
+    ).catch(error => {
+        uiStatusError(makeErrorMsg(error), false);
+    });
+}
+
+/********* mode2 *********/
+function liffToggleDeviceMode2State(state) {
+    // on: 0x05
+    // off: 0x04
+    window.ledCharacteristic.writeValue(
+        state ? new Uint8Array([0x05]) : new Uint8Array([0x04])
+    ).catch(error => {
+        uiStatusError(makeErrorMsg(error), false);
+    });
+}
+
+/********* mode3 *********/
+function liffToggleDeviceMode3State(state) {
+    // on: 0x09
+    // off: 0x08
+    window.ledCharacteristic.writeValue(
+        state ? new Uint8Array([0x09]) : new Uint8Array([0x08])
     ).catch(error => {
         uiStatusError(makeErrorMsg(error), false);
     });
