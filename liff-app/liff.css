@@ -39,6 +39,22 @@ p {
     background-color: #16C464; /* LINE Green */
 }
 
+/***************** mode1 押されている時******************/
+.mode1-on, .mode1-on:active {
+    background-color: #16C464;
+}
+
+/***************** mode2 押されている時******************/
+.mode2-on, .mode2-on:active {
+    background-color: #16C464;
+}
+
+/***************** mode3 押されている時******************/
+.mode3-on, .mode3-on:active {
+    background-color: #16C464;
+}
+
+
 .btn-state {
     box-shadow: 0pt 6pt #999;
     border-radius: 4pt;
