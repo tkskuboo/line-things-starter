@@ -47,7 +47,7 @@ function handlerToggleLed() {
 
     uiToggleMode1Button(mode1State);
     liffToggleDeviceMode1State(mode1State);
-    console.log("mode-1:",mode1state);
+    console.log("mode-1:%d",mode1state);
  }
 
 /******* mode2 button action *****************/
@@ -56,7 +56,7 @@ function handlerToggleLed() {
 
    uiToggleMode2Button(mode2State);
    liffToggleDeviceMode2State(mode2State);
-   console.log("mode-2:",mode2state);
+   console.log("mode-2:%d",mode2state);
 }
 
 /******* mode3 button action *****************/
@@ -65,7 +65,7 @@ function handlerToggleMode3(){
 
   uiToggleMode3Button(mode3State);
   liffToggleDeviceMode3State(mode3State);
-  console.log("mode-3:",mode3state);
+  console.log("mode-3:%d",mode3state);
 }
 
 
