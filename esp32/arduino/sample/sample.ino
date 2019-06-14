@@ -7,7 +7,7 @@
 #define DEVICE_NAME "LINE Things Trial ESP32"
 
 // User service UUID: Change this to your generated service UUID
-#define USER_SERVICE_UUID "91E4E176-D0B9-464D-9FE4-52EE3E9F1552"
+#define USER_SERVICE_UUID "fdc3e1c5-34a5-4661-87d1-74b394d11cb4"
 // User service characteristics
 #define WRITE_CHARACTERISTIC_UUID "E9062E71-9E62-4BC6-B0D3-35CDCD9B027B"
 #define NOTIFY_CHARACTERISTIC_UUID "62FBD229-6EDD-4D1A-B554-5C4E1BB29169"
@@ -18,6 +18,9 @@
 
 #define BUTTON 0
 #define LED1 2
+#define MODE1 12
+#define MODE2 14
+#define MODE3 27
 
 BLEServer* thingsServer;
 BLESecurity *thingsSecurity;
@@ -47,7 +50,28 @@ class writeCallback: public BLECharacteristicCallbacks {
     std::string value = bleWriteCharacteristic->getValue();
     if ((char)value[0] <= 1) {
       digitalWrite(LED1, (char)value[0]);
+      Serial.println(value[0],HEX);
+    }else if((char)value[0] <= 3) {
+      digitalWrite(MODE1, 1);
+      digitalWrite(MODE2, 0);
+      digitalWrite(MODE3, 0);
+      digitalWrite(LED1, (char)value[0] == 3);
+      Serial.println(value[0],HEX); 
+    }else if((char)value[0] <= 5) {
+      digitalWrite(MODE1, 0);
+      digitalWrite(MODE2, 1);
+      digitalWrite(MODE3, 0);
+      digitalWrite(LED1, (char)value[0] == 5);
+      Serial.println(value[0],HEX); 
+    }else if((char)value[0] <= 9) {
+      digitalWrite(MODE1, 0);
+      digitalWrite(MODE2, 0);
+      digitalWrite(MODE3, 1);
+      digitalWrite(LED1, (char)value[0] == 9);
+      Serial.println(value[0],HEX); 
     }
+    
+
   }
 };
 
