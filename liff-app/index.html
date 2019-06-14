@@ -48,8 +48,26 @@
       <p>
         <button id="btn-led-toggle" class="btn btn-led-toggle" onclick="handlerToggleLed()">Switch LED ON</button>
       </p>
+      <p>
+        <button id="btn-mode1-toggle" class="btn btn-led-toggle" value="mode-1" onclick="handlerToggleMode1()">男性の声 ON</button>
+      </p>
+      <p>
+        <button id="btn-mode2-toggle" class="btn btn-led-toggle" value="mode-2" onclick="handlerToggleMode2()">女性の声 ON</button>
+      </p>
+      <p>
+        <button id="btn-mode3-toggle" class="btn btn-led-toggle" value="mode-3" onclick="handlerToggleMode3()">ロボットの声 ON</button>
+      </p>
       <hr />
     </div>
+
+<!-- vConsole  start-->
+    <footer class="footer">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/vConsole/3.2.0/vconsole.min.js"></script>
+      <script>
+        var vConsole = new VConsole();
+      </script>
+      </footer>
+<!-- vConsole end -->
   </body>
 
 </html>
